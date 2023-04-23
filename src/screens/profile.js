@@ -35,7 +35,9 @@ function ProfileScreen() {
         const handleProfileFetch = async () => {
             try {
                 const { payload } = await dispatch(profileThunk());
-                setProfile(payload);
+                if (payload) {
+                    setProfile(payload);
+                }
             } catch (e) {
             }
         };
@@ -48,7 +50,7 @@ function ProfileScreen() {
 
     return (
         <div>
-            {!currentUser && (<div className="myTitleColor fs-1 d-flex">
+            {!profile && (<div className="myTitleColor fs-1 d-flex">
                 <Link to={"/login"} className="mx-auto mt-2">click here to login</Link>
             </div>)}
             {profile && <div className="d-flex">
