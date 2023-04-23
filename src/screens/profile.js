@@ -11,6 +11,7 @@ import {
 import {Card, ListGroup} from "react-bootstrap";
 import "react-responsive-carousel/lib/styles/carousel.min.css"
 import MovieCard from "./movieCard";
+import {updateCurrentUser} from "../redux/user-reducer";
 
 function ProfileScreen() {
     const { currentUser } = useSelector((state) => state.user);
@@ -19,6 +20,7 @@ function ProfileScreen() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const save = () => {
+        dispatch(updateCurrentUser(profile))
         dispatch(updateUserThunk(profile));
     };
     const getMyReview = async () => {
@@ -46,7 +48,7 @@ function ProfileScreen() {
 
     return (
         <div>
-            {!profile && (<div className="myTitleColor fs-1 d-flex">
+            {!currentUser && (<div className="myTitleColor fs-1 d-flex">
                 <Link to={"/login"} className="mx-auto mt-2">click here to login</Link>
             </div>)}
             {profile && <div className="d-flex">

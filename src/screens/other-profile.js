@@ -9,6 +9,7 @@ import {Card, ListGroup} from "react-bootstrap";
 import MovieCard from "./movieCard";
 function OtherProfile() {
     const { currentUser } = useSelector((state) => state.user);
+    console.log(currentUser)
     const { id } = useParams();
     const [user, setUser] = useState({});
     const [reviews, setReviews] = useState([]);
