@@ -139,7 +139,7 @@ function OtherProfile() {
                     <ListGroup variant="flush">
                         {user.following.length !== 0 && user.following.map((usr) => (
                             <ListGroup.Item key={usr.user}>
-                                <a href={`/profile/${usr.user}`}>{usr.username}</a>
+                                <Link to={`/profile/${usr.user}`}>{usr.username}</Link>
                             </ListGroup.Item>
                         ))}
                         {user.following.length === 0 &&
@@ -157,7 +157,7 @@ function OtherProfile() {
                     <ListGroup variant="flush">
                         {user.followers.length !== 0 && user.followers.map((follower) => (
                             <ListGroup.Item key={follower.user}>
-                                <a href={`/profile/${follower.user}`}>{follower.username}</a>
+                                <Link to={`/profile/${follower.user}`}>{follower.username}</Link>
                             </ListGroup.Item>
                         ))}
                         {user.followers.length === 0 &&

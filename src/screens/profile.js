@@ -38,7 +38,7 @@ function ProfileScreen() {
             }
         };
         handleProfileFetch();
-    }, [reviews]);
+    }, []);
 
     useEffect(() => {
         getMyReview();
@@ -184,7 +184,7 @@ function ProfileScreen() {
                     <ListGroup variant="flush">
                         {currentUser.following.length !== 0 && currentUser.following.map((usr) => (
                             <ListGroup.Item key={usr.user}>
-                                <a href={`/profile/${usr.user}`}>{usr.username}</a>
+                                <Link to={`/profile/${usr.user}`}>{usr.username}</Link>
                             </ListGroup.Item>
                         ))}
                         {currentUser.following.length === 0 &&
@@ -202,7 +202,7 @@ function ProfileScreen() {
                     <ListGroup variant="flush">
                         {currentUser.followers.length !== 0 && currentUser.followers.map((follower) => (
                             <ListGroup.Item key={follower.user}>
-                                <a href={`/profile/${follower.user}`}>{follower.username}</a>
+                                <Link to={`/profile/${follower.user}`}>{follower.username}</Link>
                             </ListGroup.Item>
                         ))}
                         {currentUser.followers.length === 0 &&
