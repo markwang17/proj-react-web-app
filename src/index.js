@@ -3,7 +3,12 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap-icons/font/bootstrap-icons.css';
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faUser, faEnvelope, faLock, faCalendarDays, faUserGroup } from '@fortawesome/free-solid-svg-icons'
 
+library.add(faUser, faEnvelope, faLock, faCalendarDays, faUserGroup)
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
