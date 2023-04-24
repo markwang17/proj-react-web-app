@@ -4,7 +4,6 @@ import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import {deleteReview, findMyReviews} from "../services/review-service";
 import {
-    profileThunk,
     logoutThunk,
     updateUserThunk,
 } from "../services/user-thunks";
@@ -12,6 +11,7 @@ import {Card, ListGroup} from "react-bootstrap";
 import "react-responsive-carousel/lib/styles/carousel.min.css"
 import MovieCard from "./movieCard";
 import {updateCurrentUser} from "../redux/user-reducer";
+import * as user_service from "../services/user-service";
 
 function ProfileScreen() {
     const { currentUser } = useSelector((state) => state.user);
@@ -22,6 +22,7 @@ function ProfileScreen() {
     const save = () => {
         dispatch(updateCurrentUser(profile))
         dispatch(updateUserThunk(profile));
+        alert("profile saved!")
     };
     const getMyReview = async () => {
         if (!currentUser || !currentUser._id) {
@@ -33,13 +34,10 @@ function ProfileScreen() {
 
     useEffect(() => {
         const handleProfileFetch = async () => {
-            try {
-                const { payload } = await dispatch(profileThunk());
-                if (payload) {
-                    setProfile(payload);
-                }
-            } catch (e) {
-            }
+            user_service.profile().then(res => {
+                setProfile(res)
+            })
+
         };
         handleProfileFetch();
     }, []);

@@ -2,18 +2,15 @@ import React, { useState, useEffect } from "react";
 import {Link, useParams} from "react-router-dom";
 import {findUserById, follow, unfollow} from "../services/user-service";
 import {useDispatch, useSelector} from "react-redux";
-import {profileThunk, updateUserThunk} from "../services/user-thunks";
-import {useNavigate} from "react-router";
+import {updateUserThunk} from "../services/user-thunks";
 import {deleteReview, findMyReviews} from "../services/review-service";
 import {Card, ListGroup} from "react-bootstrap";
 import MovieCard from "./movieCard";
 function OtherProfile() {
     const { currentUser } = useSelector((state) => state.user);
-    console.log(currentUser)
     const { id } = useParams();
     const [user, setUser] = useState({});
     const [reviews, setReviews] = useState([]);
-    const navigate = useNavigate();
     const getMyReview = async () => {
         if (!id) {
             return
@@ -21,22 +18,6 @@ function OtherProfile() {
         const response = await findMyReviews(id);
         setReviews(response);
     };
-
-    useEffect(() => {
-        // const handleProfileFetch = async () => {
-        //     try {
-        //         const { payload } = await dispatch(profileThunk());
-        //     } catch (e) {
-        //     }
-        // };
-        // handleProfileFetch();
-        const handleRedirect = async () => {
-            if (currentUser && currentUser._id === id) {
-                navigate("/profile");
-            }
-        };
-        handleRedirect();
-    }, [currentUser]);
 
     useEffect(() => {
         const fetchUser = async () => {

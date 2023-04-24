@@ -6,12 +6,12 @@ const MovieCard = ({ movieList, headerString }) => {
     const navigate = useNavigate();
     const moviesPerPage = 4;
     const renderMovie = (movie) => (
-        <Col key={movie.movieId} md={3} onClick={()=>{
+        <Col key={movie.movieId} xs={3} onClick={()=>{
             navigate(`/details/${movie.movieId}`)
         }} style={{ cursor: "pointer" }}>
             {/*<img src={`https://image.tmdb.org/t/p/w300${movie.movieCover}`} alt={movie.movieId}/>*/}
-            {movie.movieCover && <img src={`https://image.tmdb.org/t/p/w300${movie.movieCover}`} alt={movie.movieId}/>}
-            {!movie.movieCover && <img src={process.env.PUBLIC_URL + "/200x300.png"} alt="poster not found"/>}
+            {movie.movieCover && <img src={`https://image.tmdb.org/t/p/w300${movie.movieCover}`} alt={movie.movieId} className="p-2"/>}
+            {!movie.movieCover && <img src={process.env.PUBLIC_URL + "/200x300.png"} alt="poster not found" className="p-2"/>}
         </Col>
     );
 
@@ -38,7 +38,6 @@ const MovieCard = ({ movieList, headerString }) => {
                 .carousel-control-next,
 .carousel-control-prev {
   width: 5vw;
-  height: 20vw;
 }`}
             </style>
         </Card>

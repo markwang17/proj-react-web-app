@@ -45,6 +45,8 @@ export const login = async ({ username, password }) => {
     if (response.status === 200) {
         const user = response.data;
         return user;
+    } else if (response.status === 403) {
+        throw new Error("your account is being blocked");
     } else {
         throw new Error("login failed");
     }

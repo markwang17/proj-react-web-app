@@ -8,7 +8,7 @@ export const loginThunk = createAsyncThunk(
             const user = await userService.login(credentials);
             return user;
         } catch (e) {
-            throw new Error("login failed");
+            throw new Error(e.message);
         }
 
     }

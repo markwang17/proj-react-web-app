@@ -1,7 +1,6 @@
 import React, {useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import {useDispatch, useSelector} from "react-redux";
-import {getMovie} from "../igdb/themoviedb-service";
 import {profileThunk} from "../services/user-thunks";
 
 const NavBar = ({ active }) => {
@@ -10,7 +9,7 @@ const NavBar = ({ active }) => {
     useEffect(() => {
         const handleProfileFetch = async () => {
             try {
-                const { payload } = await dispatch(profileThunk());
+                await dispatch(profileThunk());
             } catch (e) {
             }
         };
@@ -18,7 +17,7 @@ const NavBar = ({ active }) => {
     }, []);
 
     return (
-        <nav className="mt-2 navbar navbar-expand-lg navbar-dark rounded-4" style={{backgroundColor: "#2048C4"}}>
+        <nav className="mt-2 navbar navbar-expand navbar-dark rounded-4" style={{backgroundColor: "#2048C4"}}>
             <div className="container-fluid">
                 <Link className="navbar-brand fw-bold" to="/">
                     TMDB
